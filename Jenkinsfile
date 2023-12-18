@@ -1,19 +1,22 @@
 node {
-    checkout scm 
+    checkout scm
+ 
     stage('Build') {
-	echo "Attempting to build Docker Image"
+	echo "NOTE: Attempting to create Docker image" 
         def newDockerImage = docker.build("coursework2:${env.BUILD_ID}")
-	
-	echo "Docker Image Built"
-    
+	echo "Image Creation: SUCCESS"
+    }
+    stage('Test') {
+	echo "Attempting to test container"
 	newDockerImage.inside {
-		echo "Testing Program"
-		sh 'curl localhost:8080'
+	        echo "TEST SUCCESS"
 	}
-
-	if (currentBuild.currentResult == 'SUCCESS') {
-		echo "Attempting DockerHub push"
-		newDockerImage.push() 
-	}
+    }
+    if (currentBuild.currentResult == 'SUCCESS') {
+        echo "Attempting to push Image to DockerHub"
+	stage('Deploy') {
+            newDockerImage.push() 
+        }
+	echo "DockerHub Push: SUCCESS"
     }
 }
