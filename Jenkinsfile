@@ -13,8 +13,8 @@ node {
 
 	if (currentBuild.currentResult == 'SUCCESS') {
 		echo "Attempting DockerHub push"
-		docker.withRegistry( '', 'dockerhub' ) {
-			 newDockerImage.push()	
+		withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+			 sh "docker push rhyshood/coursework2"	
 		}
 		echo "DockerHub Push: SUCCESS"
 	}
