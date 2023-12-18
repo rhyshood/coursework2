@@ -1,5 +1,7 @@
 node {
-    checkout scm 
+    checkout scm
+    withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+ 
     stage('Docker Process') {
 	echo "Attempting to build Docker Image"
         def newDockerImage = docker.build("coursework2:${env.BUILD_ID}")
@@ -12,7 +14,7 @@ node {
 	}
 
 		echo "Attempting DockerHub push"
-		withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+
 			 sh "docker push rhyshood/coursework2:${env.BUILD_ID}"	
 
 		echo "DockerHub Push: SUCCESS"
