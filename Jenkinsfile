@@ -1,5 +1,6 @@
 node { 
     stage('Build') { 
+	echo "Attempting to build Docker Image"
         def newDockerImage = docker.build("coursework2:${env.BUILD_ID}")
 	
 	echo "Docker Image Built"
