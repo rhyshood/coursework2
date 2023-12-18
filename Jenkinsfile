@@ -1,7 +1,7 @@
 node {
 	checkout scm
 	stage('Docker Processing'){
-		withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+		docker.withRegistry('', 'dockerhub') {
 
 			echo "Attempting to build Docker Image"
 			def newDockerImage = docker.build("coursework2:${env.BUILD_ID}")
