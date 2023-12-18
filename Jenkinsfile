@@ -1,12 +1,16 @@
 node { 
     stage('Build') { 
         def newDockerImage = docker.build("coursework2:${env.BUILD_ID}")
+	
+	echo "Docker Image Built"
     
 	newDockerImage.inside {
-	        sh 'curl localhost:8080'
+		echo "Testing Program"
+		sh 'curl localhost:8080'
 	}
 
 	if (currentBuild.currentResult == 'SUCCESS') {
+		echo "Attempting DockerHub push"
 		newDockerImage.push() 
 	}
     }
