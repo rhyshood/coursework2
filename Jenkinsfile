@@ -21,7 +21,7 @@ node {
 	
 			echo "Attempting to Update Kubernetes"
 
-			sh "ssh ubuntu@44.201.134.38 kubectl set image deployments/coursework2 coursework2=rhyshood/coursework2:latest"
+			sh "ssh ubuntu@44.201.134.38 kubectl set image deployments/coursework2 coursework2=rhyshood/coursework2"
 
 			echo "Update Kubernetes: SUCCESS" 
 		}
