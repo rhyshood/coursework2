@@ -15,7 +15,7 @@ node {
 
 			echo "Attempting DockerHub push"
 
-			newDockerImage.push()	
+			sh "docker image push rhyshood/coursework2"	
 
 			echo "DockerHub Push: SUCCESS"
 		}
