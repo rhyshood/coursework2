@@ -14,7 +14,7 @@ node {
 	if (currentBuild.currentResult == 'SUCCESS') {
 		echo "Attempting DockerHub push"
 		docker.withRegistry( '', 'dockerhub' ) {
-			 dockerImage.push()	
+			 newDockerImage.push()	
 		}
 		echo "DockerHub Push: SUCCESS"
 	}
