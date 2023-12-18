@@ -1,6 +1,6 @@
 node {
 	checkout scm
-	Stage('Docker Processing'){
+	stage('Docker Processing'){
 		withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
 
 			echo "Attempting to build Docker Image"
