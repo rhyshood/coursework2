@@ -15,7 +15,7 @@ node {
 
 			echo "Attempting DockerHub push"
 
-			sh "docker image push rhyshood/coursework2:${ENV.BUILD_id}"	
+			sh "docker image push rhyshood/coursework2:${env.BUILD_id}"	
 
 			echo "DockerHub Push: SUCCESS"
 		}
