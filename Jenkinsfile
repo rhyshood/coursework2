@@ -14,7 +14,7 @@ node {
 	if (currentBuild.currentResult == 'SUCCESS') {
 		echo "Attempting DockerHub push"
 		withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-			 sh "docker push rhyshood/coursework2"	
+			 sh "docker push rhyshood/coursework2:${env.BUILD_ID}"	
 		}
 		echo "DockerHub Push: SUCCESS"
 	}
